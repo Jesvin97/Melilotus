@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melilotus - SEO Audit Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --charcoal: #231F20;
+            --off-white: #F7F4F3;
+            --wine: #5B2333;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--off-white);
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 8px solid var(--wine);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(35, 31, 32, 0.1);
+        }
+
+        .brand-name {
+            font-size: 3rem;
+            color: var(--wine);
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .production-house {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--charcoal);
+            opacity: 0.8;
+            margin-top: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--charcoal);
+        }
+
+        h2 {
+            color: var(--wine);
+            border-bottom: 2px solid var(--off-white);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .metric-card {
+            background-color: var(--off-white);
+            padding: 25px;
+            text-align: center;
+            border-radius: 4px;
+            border: 1px solid rgba(91, 35, 51, 0.1);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--wine);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .issue-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .issue-item {
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-left: 4px solid var(--wine);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .issue-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--charcoal);
+        }
+
+        .issue-desc {
+            margin-bottom: 15px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 20px;
+            background: #ffebee;
+            color: #c62828;
+            margin-left: 10px;
+            vertical-align: middle;
+            font-family: sans-serif;
+            text-transform: uppercase;
+        }
+
+        .status-warning {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .code-block {
+            background: var(--charcoal);
+            color: var(--off-white);
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        .recommendation {
+            background: rgba(91, 35, 51, 0.05);
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .recommendation::before {
+            content: 'Recommendation: ';
+            font-weight: 700;
+            color: var(--wine);
+            font-style: normal;
+        }
+
+        .og-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            margin-top: 10px;
+            font-family: sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .og-key { font-weight: 600; }
+        .og-val.missing { color: #c62828; font-style: italic; }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(35, 31, 32, 0.1);
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="brand-name">Melilotus</div>
+        <div class="production-house">SEO Audit presented by Raphael Production House</div>
+    </header>
+
+    <h1>Technical SEO Audit Report</h1>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-value">0</span>
+            <span class="metric-label">Domain Rating</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">0</span>
+            <span class="metric-label">URL Rating</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">215</span>
+            <span class="metric-label">Word Count</span>
+        </div>
+    </div>
+
+    <div style="background-color: var(--wine); color: var(--off-white); padding: 30px; border-radius: 8px; margin-top: 20px; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(91, 35, 51, 0.15);">
+        <h2 style="color: var(--off-white); margin-top: 0; border-bottom: 1px solid rgba(247, 244, 243, 0.2); padding-bottom: 10px;">Executive Summary</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 0;">
+            Melilotus offers premium handcrafted juttis, but the website's current technical foundation is hindering its visibility on search engines. While the aesthetic appeal of the brand is strong, the site suffers from critical mobile performance bottlenecks, missing fundamental on-page SEO tags, and a weak backlink profile. By addressing these technical barriers and implementing a targeted SEO content strategy, we can significantly improve organic rankings, drive high-intent e-commerce traffic, and increase overall sales conversions.
+        </p>
+    </div>
+
+    <h2>On-Page SEO Analysis</h2>
+    
+    <ul class="issue-list">
+        <!-- Headings -->
+        <li class="issue-item">
+            <div class="issue-title">Heading Structure <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc">The first heading on the page is not an <code>&lt;H1&gt;</code> tag. Proper heading hierarchy is crucial for search engines to understand page context.</div>
+            <div class="recommendation">Ensure the page has exactly one main <code>&lt;H1&gt;</code> tag at the top of the content structure, clearly defining the topic of the page.</div>
+        </li>
+
+        <!-- Structured Data -->
+        <li class="issue-item">
+            <div class="issue-title">JSON-LD Structured Data <span class="status-badge">Missing</span></div>
+            <div class="issue-desc">No JSON-LD structured data was found on the page. This prevents rich snippets from appearing in Google search results.</div>
+            <div class="recommendation">Implement Product, Organization, and WebSite schemas to help search engines index your brand and juttis correctly.</div>
+        </li>
+
+        <!-- Open Graph Tags -->
+        <li class="issue-item">
+            <div class="issue-title">Open Graph (Social) Tags <span class="status-badge status-warning">Incomplete</span></div>
+            <div class="issue-desc">Open Graph tags govern how URLs are displayed when shared on social media. Current setup is missing critical properties:</div>
+            
+            <div class="code-block">
+                <div class="og-grid">
+                    <div class="og-key">og:title</div><div class="og-val">Melilotus | Premium Handcrafted Juttis</div>
+                    <div class="og-key">og:description</div><div class="og-val">Shop the finest handcrafted and embellished juttis at Melilotus.in.</div>
+                    <div class="og-key">og:type</div><div class="og-val missing">Missing</div>
+                    <div class="og-key">og:url</div><div class="og-val missing">Missing</div>
+                    <div class="og-key">og:image</div><div class="og-val missing">Failed to fetch (https://melilotus.in/logo.png)</div>
+                </div>
+            </div>
+            <div class="recommendation">Define <code>og:type</code> (e.g., website or product), include the canonical <code>og:url</code>, and ensure the <code>og:image</code> URL points to a valid, accessible, high-resolution image.</div>
+        </li>
+    </ul>
+
+    <h2>Technical SEO Analysis</h2>
+
+    <ul class="issue-list">
+        <!-- Canonical URL -->
+        <li class="issue-item">
+            <div class="issue-title">Canonical URL <span class="status-badge">Missing</span></div>
+            <div class="issue-desc">No canonical URL tag is present in the rendered HTML. This can lead to duplicate content issues if the site is accessible via HTTP/HTTPS or with/without 'www'.</div>
+            <div class="recommendation">Add a self-referencing canonical tag to the <code>&lt;head&gt;</code> section: <br><code>&lt;link rel="canonical" href="https://melilotus.in/" /&gt;</code></div>
+        </li>
+
+        <!-- Robots -->
+        <li class="issue-item">
+            <div class="issue-title">Crawling & Indexing <span class="status-badge status-warning">Incomplete</span></div>
+            <div class="issue-desc">
+                While a robots.txt file exists (<code>https://melilotus.in/robots.txt</code>), explicit indexation directives are missing from the page.
+                <br><br>
+                • Robots Meta Tag: <strong>Missing</strong><br>
+                • X-Robots-Tag HTTP Header: <strong>Missing</strong>
+            </div>
+            <div class="recommendation">Add a robots meta tag (e.g., <code>&lt;meta name="robots" content="index, follow"&gt;</code>) to explicitly allow search engines to index the page and follow links.</div>
+        </li>
+
+        <!-- Sitemaps -->
+        <li class="issue-item">
+            <div class="issue-title">XML Sitemap <span class="status-badge">Missing</span></div>
+            <div class="issue-desc">No sitemap was found. A sitemap is essential for search engines to efficiently discover and crawl all URLs on the website.</div>
+            <div class="recommendation">Generate an XML sitemap, link it inside your <code>robots.txt</code> file, and submit it to Google Search Console.</div>
+        </li>
+
+        <!-- Hreflangs -->
+        <li class="issue-item">
+            <div class="issue-title">Hreflang Tags <span class="status-badge">Missing</span></div>
+            <div class="issue-desc">Hreflang tags are not present. If you plan to target multiple languages or regions, this is required.</div>
+            <div class="recommendation">If your store serves multiple countries (e.g., India, US, UK), implement hreflang tags to serve the correct regional variations. If it is purely single-region, this can be ignored for now.</div>
+        </li>
+
+        <!-- HTTP vs HTTPS -->
+        <li class="issue-item">
+            <div class="issue-title">HTTP to HTTPS Redirect <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc">The website is currently accessible via both HTTP and HTTPS versions. Search engines may treat these as two separate websites, causing duplicate content issues and diluting your SEO ranking power.</div>
+            <div class="recommendation">Implement a site-wide 301 redirect from the HTTP version to the secure HTTPS version so that all traffic and search engine bots are forced to the secure site.</div>
+        </li>
+
+        <!-- External Robots Blocking -->
+        <li class="issue-item" style="opacity: 0.85;">
+            <div class="issue-title">Facebook Sharing / Robots.txt <span class="status-badge" style="background: #e3f2fd; color: #1565c0;">Info / Normal</span></div>
+            <div class="issue-desc">
+                When sharing the link on Facebook (<code>https://www.facebook.com/share/1DZGon5LHF/</code>), the status may show as <em>"Blocked by robots.txt (Status Code 0)"</em> by external crawling tools.
+                <br><br>
+                <strong>Context:</strong> The crawling tool is restricted from accessing this URL because Facebook's own <code>robots.txt</code> file disallows it. This is entirely normal for external social media platforms protecting their servers from bots; it <strong>does not</strong> negatively impact your own site's SEO.
+            </div>
+        </li>
+    </ul>
+
+    <h2>AI Search Engine Visibility</h2>
+    
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-value">14</span>
+            <span class="metric-label">AI Visibility Score</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">5</span>
+            <span class="metric-label">Total Mentions</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value">0</span>
+            <span class="metric-label">Cited Pages</span>
+        </div>
+    </div>
+
+    <ul class="issue-list">
+        <li class="issue-item">
+            <div class="issue-title">AI Engine Breakdown</div>
+            <div class="issue-desc">
+                <table style="width: 100%; text-align: left; border-collapse: collapse; margin-top: 10px; font-family: sans-serif; font-size: 0.95rem;">
+                    <tr style="border-bottom: 2px solid var(--off-white);">
+                        <th style="padding: 12px 8px; color: var(--wine);">AI Engine</th>
+                        <th style="padding: 12px 8px; color: var(--wine);">Mentions</th>
+                        <th style="padding: 12px 8px; color: var(--wine);">Cited Pages</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--off-white);">
+                        <td style="padding: 12px 8px; font-weight: 600;">Gemini</td>
+                        <td style="padding: 12px 8px;">4</td>
+                        <td style="padding: 12px 8px;">0</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--off-white);">
+                        <td style="padding: 12px 8px; font-weight: 600;">ChatGPT</td>
+                        <td style="padding: 12px 8px;">1</td>
+                        <td style="padding: 12px 8px;">0</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--off-white);">
+                        <td style="padding: 12px 8px; font-weight: 600;">AI Overview</td>
+                        <td style="padding: 12px 8px;">0</td>
+                        <td style="padding: 12px 8px;">0</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 8px; font-weight: 600;">AI Mode</td>
+                        <td style="padding: 12px 8px;">0</td>
+                        <td style="padding: 12px 8px;">0</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="recommendation">While the brand has started appearing in AI responses (predominantly on Gemini), there are no cited page links yet. Focus on creating authoritative, structured content to turn these unlinked mentions into cited references that drive direct traffic.</div>
+        </li>
+    </ul>
+
+    <h2>Additional Audit Findings</h2>
+
+    <ul class="issue-list">
+        <!-- Issues from PDF -->
+        <li class="issue-item">
+            <div class="issue-title">Weak Backlink Profile <span class="status-badge status-warning">High Priority</span></div>
+            <div class="issue-desc">The site has a very low level of backlink activity (only 27 total backlinks from 22 referring domains). Search engines use backlinks as a strong indicator of authority.</div>
+            <div class="recommendation">Execute a comprehensive link-building strategy to acquire high-quality, relevant backlinks from authoritative domains.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Slow Page Load & Mobile Performance <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc">The website loads slowly (Server Response: 1.8s, All Content: 4.7s) and scores poorly (62/100) on Google's Mobile PageSpeed Insights, despite a great Desktop score (97/100). The site is also using an outdated HTTP protocol instead of HTTP/2+.</div>
+            <div class="recommendation">Enable HTTP/2+ protocol, reduce unused JavaScript, and optimize server response times to improve mobile load speeds.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Keyword Consistency & Distribution <span class="status-badge">Missing</span></div>
+            <div class="issue-desc">Main target keywords are not effectively distributed across important HTML tags (Title, Meta Description, Headings).</div>
+            <div class="recommendation">Ensure target keywords are naturally integrated into the Title tag, Meta Description, and Header tags.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Generative Engine Optimization (GEO) <span class="status-badge">Missing</span></div>
+            <div class="issue-desc">The site is missing an Identity Schema (Organization/Person) and an <code>llms.txt</code> file. This limits the ability of LLMs and AI Search Engines to confidently understand the brand's entity structure.</div>
+            <div class="recommendation">Implement Identity Schema and create an <code>llms.txt</code> file to improve AI search engine readability.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Missing Social Links & Tracking <span class="status-badge" style="background: #e3f2fd; color: #1565c0;">Info</span></div>
+            <div class="issue-desc">No associated social media profiles (Facebook, Instagram, X, YouTube, LinkedIn) are linked on the page. Furthermore, Analytics tools and Facebook Pixel were not detected.</div>
+            <div class="recommendation">Link official social profiles and install Analytics / Facebook Pixel for tracking user behavior and retargeting.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Missing Mail Security Records <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc">The domain is missing DMARC and SPF mail records.</div>
+            <div class="recommendation">Add DMARC and SPF records to your DNS settings to improve email deliverability and prevent domain spoofing.</div>
+        </li>
+
+        <!-- Issues from XLSX -->
+        <li class="issue-item">
+            <div class="issue-title">Technical, Structural & Security Flags <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc">The spreadsheet highlights several specific technical and structural flags that need addressing:
+            <ul style="margin-top: 10px; line-height: 1.8;">
+                <li><strong>Security Headers:</strong> Missing <code>X-Content-Type-Options</code>, <code>X-Frame-Options</code>, <code>Content-Security-Policy</code>, and <code>Secure Referrer-Policy</code> headers.</li>
+                <li><strong>URL Formatting:</strong> Underscores and parameters were found in URLs (URLs should ideally use hyphens and be clean).</li>
+                <li><strong>Content & Meta:</strong> Instances of duplicate Page Titles, Titles over 60 characters, duplicate Meta Descriptions, Soft 404 pages, and images missing size attributes.</li>
+                <li><strong>Links:</strong> Internal outlinks missing anchor text.</li>
+            </ul>
+            </div>
+            <div class="recommendation">Implement the missing security headers in your server configuration, sanitize URL structures, ensure unique meta tags for every page, and add size attributes/anchor text where missing.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Profile Configuration <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc">The label "Account Type: customer" is currently visible on user profiles.</div>
+            <div class="recommendation">Remove the "Account Type: customer" designation from the profile to streamline the interface and improve the user experience.</div>
+        </li>
+    </ul>
+
+    <h2>Lighthouse Mobile Audit Findings</h2>
+    <div style="margin-bottom: 20px; font-style: italic; color: var(--charcoal); opacity: 0.8;">
+        The following metrics and issues were extracted from the Google Lighthouse Mobile Performance Audit.
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-value" style="color: #c62828;">34</span>
+            <span class="metric-label">Performance</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value" style="color: #ef6c00;">85</span>
+            <span class="metric-label">Accessibility</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value" style="color: #2e7d32;">100</span>
+            <span class="metric-label">Best Practices</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value" style="color: #2e7d32;">92</span>
+            <span class="metric-label">SEO</span>
+        </div>
+    </div>
+
+    <ul class="issue-list">
+        <li class="issue-item">
+            <div class="issue-title">Mobile Performance Bottlenecks <span class="status-badge status-warning" style="background: #ffebee; color: #c62828;">Critical Priority</span></div>
+            <div class="issue-desc"><strong>Category:</strong> Performance (34/100)<br><br>The mobile experience is heavily bottlenecked by slow loading times. Key metrics flagged:
+            <ul style="margin-top: 10px; line-height: 1.8;">
+                <li><strong>Total Blocking Time:</strong> 910 ms (High main-thread blocking)</li>
+                <li><strong>Largest Contentful Paint (LCP):</strong> 28.6 seconds</li>
+                <li><strong>Time to Interactive:</strong> 29.8 seconds</li>
+                <li><strong>Network Chaining:</strong> Critical requests are chained, delaying render.</li>
+            </ul>
+            </div>
+            <div class="recommendation">Optimize your JavaScript execution, defer non-critical CSS/JS, and fix the LCP breakdown by ensuring the largest image or text block loads much earlier in the network waterfall.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Accessibility Compliance <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc"><strong>Category:</strong> Accessibility (85/100)<br><br>While mostly accessible, a few elements prevent full screen reader compatibility and usability:
+            <ul style="margin-top: 10px; line-height: 1.8;">
+                <li>Buttons and links are missing accessible/discernible names (e.g., icon-only buttons).</li>
+                <li>Certain background and foreground color combinations do not meet sufficient contrast ratios.</li>
+            </ul>
+            </div>
+            <div class="recommendation">Add <code>aria-label</code> attributes to icon buttons, provide descriptive text for all links, and adjust color palettes to meet WCAG AA contrast standards.</div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Invalid Robots.txt <span class="status-badge status-warning">Needs Fix</span></div>
+            <div class="issue-desc"><strong>Category:</strong> SEO (92/100)<br><br>Lighthouse flagged the <code>robots.txt</code> file as invalid or improperly formatted.</div>
+            <div class="recommendation">Validate the syntax of your <code>robots.txt</code> file using a testing tool and ensure there are no malformed rules blocking critical assets.</div>
+        </li>
+    </ul>
+
+    <h2>Growth Strategy & Recommendations</h2>
+    <div style="margin-bottom: 20px; font-style: italic; color: var(--charcoal); opacity: 0.8;">
+        Beyond technical fixes, here is our strategic marketing roadmap for growing the Melilotus brand online.
+    </div>
+
+    <ul class="issue-list">
+        <li class="issue-item">
+            <div class="issue-title">Keyword Gap & Content Strategy <span class="status-badge" style="background: #e8f5e9; color: #2e7d32;">Growth Opportunity</span></div>
+            <div class="issue-desc">
+                Currently, the site has very thin textual content (215 words total). To capture high-intent buyers, we need to create targeted content around what your customers are actively searching for.
+            </div>
+            <div class="recommendation">
+                <strong>Action:</strong> Launch optimized category pages and blog content targeting high-value long-tail keywords such as <em>"embroidered bridal juttis,"</em> <em>"comfortable ethnic footwear,"</em> and <em>"how to style juttis with western wear."</em>
+            </div>
+        </li>
+
+        <li class="issue-item">
+            <div class="issue-title">Conversion Rate Optimization (CRO) <span class="status-badge" style="background: #e8f5e9; color: #2e7d32;">Growth Opportunity</span></div>
+            <div class="issue-desc">
+                Getting traffic is only the first step; converting visitors into buyers is crucial for ROI. Technical slowdowns and lack of visible trust signals currently interrupt the shopping experience.
+            </div>
+            <div class="recommendation">
+                <strong>Action:</strong> Optimize the mobile checkout flow, display prominent trust badges (secure checkout, easy returns), showcase customer reviews directly on product pages, and ensure high-resolution product images load instantly.
+            </div>
+        </li>
+    </ul>
+
+    <h2>Actionable Roadmap & Timeline</h2>
+    <div style="background: #fff; padding: 25px; border: 1px solid rgba(35, 31, 32, 0.1); border-radius: 4px; margin-bottom: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="padding-left: 15px; border-left: 4px solid #c62828;">
+                <h3 style="margin: 0 0 5px 0; color: var(--wine);">Phase 1: Quick Wins (Days 1 - 30)</h3>
+                <p style="margin: 0; opacity: 0.9;">Fix critical H1 tags, implement HTTPS 301 redirects, generate XML sitemaps, and add fundamental Product & Organization Schema.</p>
+            </div>
+            <div style="padding-left: 15px; border-left: 4px solid #ef6c00;">
+                <h3 style="margin: 0 0 5px 0; color: var(--wine);">Phase 2: Technical & Mobile Optimization (Days 30 - 60)</h3>
+                <p style="margin: 0; opacity: 0.9;">Address Lighthouse mobile performance bottlenecks, defer unused JS/CSS to improve LCP, and resolve missing security headers.</p>
+            </div>
+            <div style="padding-left: 15px; border-left: 4px solid #2e7d32;">
+                <h3 style="margin: 0 0 5px 0; color: var(--wine);">Phase 3: Authority & Growth (Days 60 - 90+)</h3>
+                <p style="margin: 0; opacity: 0.9;">Execute a high-quality backlink strategy, roll out SEO-optimized blog content, and refine the site's Generative Engine Optimization (GEO).</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div style="font-weight: 600; margin-bottom: 5px; color: var(--wine);">Prepared for Melilotus by Raphael Production House</div>
+        Kuttoor P.O., Thiruvalla, Kerala, 689106<br>
+        Mobile: 9446915892, 9446915862<br>
+        Email: <a href="mailto:raphaelproductionhouse@gmail.com" style="color: inherit; text-decoration: none;">raphaelproductionhouse@gmail.com</a>
+    </footer>
+</div>
+
+</body>
+</html>
